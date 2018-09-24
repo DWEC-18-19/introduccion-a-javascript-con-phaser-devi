@@ -11,6 +11,7 @@ var winningMessage;
 var won = false;
 var currentScore = 0;
 var winningScore = 100;
+var acabado = false;
 
 // add collectable items to the game
 function addItems() {
@@ -21,12 +22,13 @@ function addItems() {
   createItem(525, 300, 'coin');
   createItem(100, 250, 'coin');
   createItem(650, 250, 'coin');
-  createItem(150, 40, 'coin');
+  createItem(150, 40, 'star');
   createItem(225, 200, 'coin');
   createItem(575, 150, 'coin');
   createItem(375, 100, 'coin');
   createItem(350, 500, 'poison');
   createItem(500, 100, 'poison');
+  createItem(180, 400, 'poison');
 }
 
 // add platforms to the game
@@ -68,10 +70,15 @@ function itemHandler(player, item) {
       currentScore = currentScore+20;
   }
   if(item.key =='poison'){
-      currentScore = currentScore-30;
+      currentScore = currentScore-50;
   }
-  if (currentScore >= winningScore) {
+  if(item.key =='star'){
+      currentScore = currentScore+50;
+  }
+  if (currentScore >= winningScore && acabado == false) {
       createBadge();
+      acabado = true
+      
   }
 }
 
@@ -98,10 +105,13 @@ window.onload = function () {
     game.load.spritesheet('coin', 'coin.png', 36, 44);
     game.load.spritesheet('badge', 'badge.png', 42, 54);
     game.load.spritesheet('poison', 'poison.png', 32, 32);
+    game.load.spritesheet('fondo', 'f1.png', 800, 600);
+    game.load.spritesheet('star', 'star.png', 32, 32);
   }
 
   // initial game set up
   function create() {
+    var fondoo = game.add.sprite(0, 0, 'fondo');
     player = game.add.sprite(50, 600, 'player');
     player.animations.add('walk');
     player.anchor.setTo(0.5, 1);
