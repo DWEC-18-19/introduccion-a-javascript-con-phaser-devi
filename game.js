@@ -25,7 +25,8 @@ function addItems() {
   createItem(225, 200, 'coin');
   createItem(575, 150, 'coin');
   createItem(375, 100, 'coin');
-  createItem(200, 200, 'poison');
+  createItem(350, 500, 'poison');
+  createItem(500, 100, 'poison');
 }
 
 // add platforms to the game
@@ -62,10 +63,9 @@ function createBadge() {
 // when the player collects an item on the screen
 function itemHandler(player, item) {
   item.kill();
-  currentScore = currentScore + 10;
   
   if(item.key =='coin'){
-      currentScore = currentScore+10;
+      currentScore = currentScore+20;
   }
   if(item.key =='poison'){
       currentScore = currentScore-30;
