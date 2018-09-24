@@ -21,10 +21,11 @@ function addItems() {
   createItem(525, 300, 'coin');
   createItem(100, 250, 'coin');
   createItem(650, 250, 'coin');
-  createItem(375, 300, 'coin');
+  createItem(150, 40, 'coin');
   createItem(225, 200, 'coin');
   createItem(575, 150, 'coin');
   createItem(375, 100, 'coin');
+  createItem(200, 200, 'poison');
 }
 
 // add platforms to the game
@@ -62,7 +63,14 @@ function createBadge() {
 function itemHandler(player, item) {
   item.kill();
   currentScore = currentScore + 10;
-  if (currentScore === winningScore) {
+  
+  if(item.key =='coin'){
+      currentScore = currentScore+10;
+  }
+  if(item.key =='poison'){
+      currentScore = currentScore-30;
+  }
+  if (currentScore >= winningScore) {
       createBadge();
   }
 }
@@ -89,6 +97,7 @@ window.onload = function () {
     game.load.spritesheet('player', 'chalkers.png', 48, 62);
     game.load.spritesheet('coin', 'coin.png', 36, 44);
     game.load.spritesheet('badge', 'badge.png', 42, 54);
+    game.load.spritesheet('poison', 'poison.png', 32, 32);
   }
 
   // initial game set up
